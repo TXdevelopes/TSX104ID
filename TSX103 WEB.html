@@ -96,7 +96,6 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
-
         /* تحسين الاستجابة */
         @media (max-width: 600px) {
             nav a {
@@ -112,7 +111,9 @@
 <body>
 
 <header>
-    <h1 id="website-title"> TSX104 ياهلا فيك في موقع</h1>
+    <span id="toggle-language" style="cursor: pointer;">English</span>
+    <h1 id="website-title"> TSX104 .ياهلا فيك في موقع</h1>
+    <span id="toggle-theme" style="cursor: pointer;">نهاري</span>
 </header>
 
 <nav>
@@ -129,18 +130,16 @@
             <a href="#" class="dropdown-item" data-content="أود أن أشكر مجتمع ChatGPT على المساعدة في نشر هذا الموقع وGitHub العربي وGodot.">شكر</a>
         </div>
     </div>
-    <a href="#" id="toggle-theme" style="float:right; margin-right: 10px;">نهاري</a>
-    <a href="#" id="toggle-language" style="float:right; margin-right: 10px;">English</a>
 </nav>
 
 <div class="panel" id="panel">
-    <span class="close-btn" id="close-panel">إغلاق</span>
+    <span class="close-btn" id="close-panel">X</span>
     <div id="panel-content">محتوى اللوحة هنا.</div>
 </div>
 
 <section id="home">
     <h2 id="section-home-title">تعريف</h2>
-    <p id="section-home-content">مطور برامج حديث يطمح للتطور ولديه مجموعة من الألعاب لم يُنشر منها سوى واحدة، وهناك المزيد في المستقبل.</p>
+    <p id="section-home-content">مطور برامج مستقل أطمح للتطور ولدي مجموعة من الألعاب لم انشر منها سوى واحدة، وهناك المزيد في المستقبل.</p>
 </section>
 
 <section id="about">
@@ -151,7 +150,7 @@
 
 <section id="contact">
     <h2 id="section-contact-title">الموقع</h2>
-    <p id="section-contact-content">لقد عملت على هذا الموقع بمفردي، رغم أن هناك بعض المساعدة من الذكاء الاصطناعي، إلا أن الجهد كان شخصياً.</p>
+    <p id="section-contact-content">اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، بس الجهد كان شخصي.</p>
 </section>
 
 <section id="goals">
@@ -192,7 +191,6 @@
         isArabic = !isArabic;
 
         if (isArabic) {
-            // النصوص العربية
             document.getElementById('website-title').innerText = "موقع TSX104 ياهلا فيك في";
             document.getElementById('nav-home').innerText = "تعريف";
             document.getElementById('nav-about').innerText = "عني";
@@ -214,7 +212,6 @@
             document.getElementById('section-contact-me-content').innerText = "للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: salehtsx103@gmail.com.";
             document.getElementById('copyright-text').innerText = "جميع الحقوق محفوظة &copy; 1446";
 
-            // ترجمة القائمة المنسدلة إلى العربية
             document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
                 switch (index) {
                     case 0:
@@ -232,7 +229,6 @@
                 }
             });
         } else {
-            // إذا تم تغيير اللغة إلى الإنجليزية
             document.getElementById('website-title').innerText = "TSX104 Website Welcome";
             document.getElementById('nav-home').innerText = "Introduction";
             document.getElementById('nav-about').innerText = "About Me";
@@ -254,7 +250,6 @@
             document.getElementById('section-contact-me-content').innerText = "To contact me, you can send a message to the email: salehtsx103@gmail.com.";
             document.getElementById('copyright-text').innerText = "All rights reserved &copy; 2025";
 
-            // ترجمة القائمة المنسدلة إلى الإنجليزية
             document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
                 switch (index) {
                     case 0:

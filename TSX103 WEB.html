@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSX 104ID</title>
-    <link rel="icon"C:\Users\HP\Downloads\TSX103.png" type="image/png">
+    <link rel="icon" href="C:\Users\HP\Downloads\TSX103.png" type="image/png">
+
     <style>
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
@@ -113,7 +114,7 @@
 
 <header>
     <span id="toggle-language" style="cursor: pointer;">English</span>
-    <h1 id="website-title"> TSX104 .ياهلا فيك في موقع</h1>
+    <h1 id="website-title">TSX104 ياهلا فيك في موقع</h1>
     <span id="toggle-theme" style="cursor: pointer;">نهاري</span>
 </header>
 
@@ -122,13 +123,15 @@
     <a href="#about" id="nav-about">عني</a>
     <a href="#contact" id="nav-contact">الموقع</a>
     <a href="#goals" id="nav-goals">اهدافي</a>
-    <a href="#contact" id="nav-contact-me">تواصل معي</a>
+    <a href="#contact-me" id="nav-contact-me">تواصل معي</a>
     <div class="dropdown">
         <a href="#" id="nav-projects">مشاريع</a>
-        <div class="dropdown-content" id="dropdown-content">
+        <div class="dropdown-content">
             <a href="#" class="dropdown-item" data-content="أملك حاليا لعبة واحدة تم نشرها وهي شرطة المتخلفين <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>اضغط هنا</a> لكنني أعمل على تطبيقات وألعاب قوية.">مشاريعي</a>
             <a href="#" class="dropdown-item" data-content="تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.">حساباتي</a>
             <a href="#" class="dropdown-item" data-content="أود أن أشكر مجتمع ChatGPT على المساعدة في نشر هذا الموقع وGitHub العربي وGodot.">شكر</a>
+            <a href="#" class="dropdown-item" data-content="هنا سيتم اضافة قريبا لعبةhtml.">website</a>
+            
         </div>
     </div>
 </nav>
@@ -146,12 +149,12 @@
 <section id="about">
     <h2 id="section-about-title">عني</h2>
     <p id="section-about-content">هذا الموقع مخصص للمهتمين ببرامج او العاب TSX104.</p>
-    <p>see/شاهد<a href="https://red-leader3xxx.itch.io/" target="_blank" style="color: #e20000;">Itch.io</a></p>
+    <p>شاهد <a href="https://red-leader3xxx.itch.io/" target="_blank" style="color: #e20000;">Itch.io</a></p>
 </section>
 
 <section id="contact">
     <h2 id="section-contact-title">الموقع</h2>
-    <p id="section-contact-content">اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، بس الجهد كان شخصي.</p>
+    <p id="section-contact-content">اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، لكن الجهد كان شخصي.</p>
 </section>
 
 <section id="goals">
@@ -212,6 +215,7 @@
             document.getElementById('section-contact-me-title').innerText = "تواصل معي";
             document.getElementById('section-contact-me-content').innerText = "للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: salehtsx103@gmail.com.";
             document.getElementById('copyright-text').innerText = "تم حفظ حقوق الملكية لعام &copy; 1446";
+           
 
             document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
                 switch (index) {
@@ -228,9 +232,8 @@
                         item.setAttribute('data-content', "أود أن أشكر مجتمع ChatGPT على المساعدة في نشر هذا الموقع وGitHub العربي وGodot.");
                         break;
                     case 3:
-                        item.innerText = "العاب html";
-                        item.setAttribute('data-content', " هنا سيتم اضافة لعبة قريبا داخل الويب.");
-                        break;
+                        item.innerText = "الويب";
+                        item.setAttribute('data-content', "هنا سيتم اضافة قريبا لعبةhtml.")
                 }
             });
         } else {
@@ -270,8 +273,8 @@
                         item.setAttribute('data-content', "I would like to thank the ChatGPT community for their help in publishing this website and the Arabic GitHub and Godot.");
                         break;
                     case 3:
-                        item.innerText = " html_games";
-                        item.setAttribute('data-content', "here i add the html games.");
+                        item.innerText = "html game";
+                        item.setAttribute('data-content', "i want add html game here.");
                         break;
                 }
             });

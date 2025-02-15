@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSX 104</title>
+    <title>TSX 104ID</title>
     <style>
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
@@ -96,7 +96,7 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
-        /* تحسين الاستجابة */
+
         @media (max-width: 600px) {
             nav a {
                 display: block;
@@ -205,12 +205,12 @@
             document.getElementById('section-about-title').innerText = "عني";
             document.getElementById('section-about-content').innerText = "هذا الموقع مخصص لتقديم معلومات برامج و العاب TSX104.";
             document.getElementById('section-contact-title').innerText = "الموقع";
-            document.getElementById('section-contact-content').innerText = "لقد عملت على هذا الموقع بمفردي، رغم أن هناك بعض المساعدة من الذكاء الاصطناعي، إلا أن الجهد كان شخصياً.";
+            document.getElementById('section-contact-content').innerText = "لقد عملت على هذا الموقع لحالي، رغم أن هناك بعض المساعدة من الذكاء الاصطناعي، إلا أن الجهد كان شخصياً.";
             document.getElementById('section-goals-title').innerText = "ما هو الهدف";
             document.getElementById('section-goals-content').innerText = "أهدف لتعلم C# و JavaScript، لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال.";
             document.getElementById('section-contact-me-title').innerText = "تواصل معي";
             document.getElementById('section-contact-me-content').innerText = "للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: salehtsx103@gmail.com.";
-            document.getElementById('copyright-text').innerText = "جميع الحقوق محفوظة &copy; 1446";
+            document.getElementById('copyright-text').innerText = "تم حفظ حقوق الملكية لعام &copy; 1446";
 
             document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
                 switch (index) {
@@ -225,6 +225,10 @@
                     case 2:
                         item.innerText = "شكر";
                         item.setAttribute('data-content', "أود أن أشكر مجتمع ChatGPT على المساعدة في نشر هذا الموقع وGitHub العربي وGodot.");
+                        break;
+                    case 3:
+                        item.innerText = "العاب html";
+                        item.setAttribute('data-content', " هنا سيتم اضافة لعبة قريبا داخل الويب.");
                         break;
                 }
             });
@@ -263,6 +267,10 @@
                     case 2:
                         item.innerText = "Thanks";
                         item.setAttribute('data-content', "I would like to thank the ChatGPT community for their help in publishing this website and the Arabic GitHub and Godot.");
+                        break;
+                    case 3:
+                        item.innerText = " html_games";
+                        item.setAttribute('data-content', "here i add the html games.");
                         break;
                 }
             });

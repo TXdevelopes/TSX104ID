@@ -4,290 +4,736 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSX 104ID</title>
-    <link rel="icon" href="C:\Users\HP\Downloads\TXGAMES.png" type="image/png">
     <meta name="google-site-verification" content="zPFdVNmgzOhoz7phhrFlb0pZRPBL2LgmlzUL8lyHzbg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --dark-bg: #111827;
+            --light-bg: #f3f4f6;
+            --dark-text: #1f2937;
+            --light-text: #f9fafb;
+            --gold: #d4af37;
+            --silver: #c0c0c0;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --gold-gradient: linear-gradient(135deg, #f6e27a 0%, #d4af37 50%, #a67c00 100%);
+            --blue-gradient: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1e3a8a 100%);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
         body {
-            font-family: 'Arial', 'Helvetica', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Cairo', 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            overflow-x: hidden;
+            direction: rtl;
+            transition: var(--transition);
         }
+
+        body.en {
+            direction: ltr;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         header {
-            background: #ffffff;
-            padding: 50px 0;
-            text-align: center;
-            color: #000000;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        nav {
-            margin: 15px 0;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #000000;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        .dropdown {
-            display: inline-block;
+            background: var(--blue-gradient);
+            padding: 60px 0;
+            color: var(--light-text);
             position: relative;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
         }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: var(--gold-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .logo {
+            max-width: 180px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .options-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+            margin: 0 auto 20px;
+            width: fit-content;
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: var(--light-text);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .toggle-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 5px;
+            margin: 20px auto;
+            display: inline-flex;
+            position: relative;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            margin: 0 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--gold-gradient);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            width: 80%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #000000;
-            min-width: 160px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            right: 0;
+            top: -550%;
+            min-width: 100px;
+            background: rgba(30, 58, 138, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 15px 0;
+            z-index: 200;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: var(--transition);
+            margin-top: 10px;
         }
+
+        body.en .dropdown-content {
+            right: auto;
+            left: 0;
+        }
+
         .dropdown:hover .dropdown-content {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
+
         .dropdown-content a {
-            color: #ffffff;
-            padding: 10px 15px;
+            color: var(--light-text);
+            padding: 12px 20px;
             text-decoration: none;
             display: block;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            border-radius: 0;
+            margin: 5px 10px;
+            text-align: right;
         }
+
+        body.en .dropdown-content a {
+            text-align: left;
+        }
+
         .dropdown-content a:hover {
-            background-color: #555;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-right: 30px;
+            border-radius: 10px;
         }
+
+        body.en .dropdown-content a:hover {
+            padding-right: 20px;
+            padding-left: 30px;
+        }
+
         .panel {
             display: none;
             background: #ffffff;
             padding: 30px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            font-size: 1.2em;
-            transition: all 0.3s;
+            border-radius: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            border-top: 5px solid var(--gold);
+            animation: fadeIn 0.5s ease;
+            transition: var(--transition);
         }
-        .panel.night-mode {
-            background: #333;
-            color: #ffffff;
+
+        .dark-mode .panel {
+            background: #1e293b;
+            border-top: 5px solid var(--accent-color);
         }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            color: #e11d48;
+            font-size: 1.2rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(225, 29, 72, 0.1);
+            transition: var(--transition);
+        }
+
+        body.en .close-btn {
+            right: auto;
+            left: 15px;
+        }
+
+        .close-btn:hover {
+            background: rgba(225, 29, 72, 0.2);
+            transform: rotate(90deg);
+        }
+
         section {
             background: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            margin: 30px auto;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            max-width: 1000px;
         }
+
+        .dark-mode section {
+            background: #1e293b;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--blue-gradient);
+            opacity: 0.1;
+            border-radius: 0 0 0 100%;
+            transition: var(--transition);
+        }
+
+        section:hover::before {
+            width: 150px;
+            height: 150px;
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        section:hover h2::after {
+            width: 100%;
+        }
+
+        .dark-mode section h2 {
+            color: var(--accent-color);
+        }
+
+        section p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        section a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        section a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .dark-mode section a {
+            color: var(--accent-color);
+        }
+
+        .dark-mode section a:hover {
+            color: var(--secondary-color);
+        }
+
         footer {
             text-align: center;
-            margin-top: 20px;
-            color: #aaa;
-            font-size: 0.9em;
+            padding: 30px;
+            background: var(--primary-color);
+            color: var(--light-text);
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
         }
-        .close-btn {
-            cursor: pointer;
-            color: red;
-            margin-bottom: 10px;
-            font-weight: bold;
+
+        footer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
         }
-        @media (max-width: 600px) {
-            nav a {
-                display: block;
-                margin: 5px 0;
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            margin: 0 10px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
             }
-            .panel {
-                font-size: 1em;
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 20px;
+            }
+
+            nav a {
+                margin: 5px;
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+
+            .dropdown-content {
+                width: 200px;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .options-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            section {
+                padding: 20px;
+                margin: 15px auto;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <span id="toggle-language" style="cursor: pointer;">English</span>
-        <h1 id="website-title">TSX104 ياهلا فيك في موقع</h1>
-        <span id="toggle-theme" style="cursor: pointer;">نهاري</span>
-        <img src="C:\Users\HP\Downloads\TXGAMES.png" alt="TSX104 Logo" style="max-width: 150px; height: auto;">
+        <div class="header-content">
+            <div class="options-bar">
+                <span id="toggle-language" class="toggle-btn"><i class="fas fa-language"></i> English</span>
+                <span id="toggle-theme" class="toggle-btn"><i class="fas fa-moon"></i> نهاري</span>
+            </div>
+            <img id="l" TXGAMES.png alt="TSX104 Logo" class="logo animate">
+            <h1 id="website-title" class="animate">TSX104 ياهلا فيك في موقع</h1>
+        </div>
+        <div class="container">
+            <nav class="animate">
+                <a href="#home" id="nav-home"><i class="fas fa-home"></i> تعريف</a>
+                <a href="#about" id="nav-about"><i class="fas fa-user"></i> عني</a>
+                <a href="#contact" id="nav-contact"><i class="fas fa-globe"></i> الموقع</a>
+                <a href="#goals" id="nav-goals"><i class="fas fa-flag-checkered"></i> اهدافي</a>
+                <a href="#contact-me" id="nav-contact-me"><i class="fas fa-envelope"></i> تواصل معي</a>
+                <div class="dropdown">
+                    <a href="#" id="nav-projects"><i class="fas fa-code-branch"></i> أكثر</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item" data-content="أملك عدة العاب <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل">
+                            <i class="fas fa-gamepad"></i> مشاريعي
+                        </a>
+                        <a href="#" class="dropdown-item" data-content="تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.">
+                            <i class="fas fa-id-card"></i> حساباتي
+                        </a>
+                        <a href="#" class="dropdown-item" data-content=".القادم UnrealEngine و UnityEngine يتم تطوير الالعاب على ">
+                            <i class="fas fa-code"></i> تطوير
+                        </a>
+                        <a href="#" class="dropdown-item" data-content=".GitHubلصنع هذه الصفحه ونشرتها ب HTML استخدمت ">
+                            <i class="fas fa-file-code"></i> صفحتي
+                        </a>
+                        <a href="#" class="dropdown-item" data-content=".هذاالاستوديو خاص بتطوير الالعاب يمكنك التواصل معي وطلب الانضمام هدفي هو جعل Txstudio احد اكبر استديوهات الشرق الاوسط سنعمل
+                            على UnrealEngine و UnityEngine">
+                            <i class="fas fa-briefcase"></i> Txstudio
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <nav>
-        <a href="#home" id="nav-home">تعريف</a>
-        <a href="#about" id="nav-about">عني</a>
-        <a href="#contact" id="nav-contact">الموقع</a>
-        <a href="#goals" id="nav-goals">اهدافي</a>
-        <a href="#contact-me" id="nav-contact-me">تواصل معي</a>
-        <div class="dropdown">
-            <a href="#" id="nav-projects">مشاريع</a>
-            <div class="dropdown-content">
-                <a href="#" class="dropdown-item" data-content=" أملك عدة العاب<a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا) </a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل">مشاريعي</a>
-                <a href="#" class="dropdown-item" data-content="تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.">حساباتي</a>
-                <a href="#" class="dropdown-item" data-content=".القادم UnrealEngine و UnityEngine يتم تطوير الالعاب على ">تطوير</a>
-                <a href="#" class="dropdown-item" data-content=".GitHubلصنع هذه الصفحه ونشرتها ب HTML استخدمت ">صفحتي</a>
-            </div>
+    <div class="container">
+        <div class="panel" id="panel">
+            <span class="close-btn" id="close-panel"><i class="fas fa-times"></i></span>
+            <div id="panel-content">محتوى اللوحة هنا.</div>
         </div>
-    </nav>
 
-    <div class="panel" id="panel">
-        <span class="close-btn" id="close-panel">X</span>
-        <div id="panel-content">محتوى اللوحة هنا.</div>
+        <section id="home" class="animate">
+            <h2 id="section-home-title"><i class="fas fa-star"></i> تعريف</h2>
+            <p id="section-home-content">مطور برامج مستقل أطمح للتطور ولدي مجموعة من الألعاب، وهناك المزيد في المستقبل. أسعى دائمًا لتطوير مهاراتي وإنشاء تجارب مميزة للمستخدمين من خلال العاب عالية الجودة.</p>
+        </section>
+
+        <section id="about" class="animate">
+            <h2 id="section-about-title"><i class="fas fa-info-circle"></i> عني</h2>
+            <p id="section-about-content">هذا الموقع مخصص للمهتمين ببرامج او العاب TSX104. نهدف إلى تقديم محتوى مميز وتجربة فريدة لكل زائر، مع التركيز على الجودة والابتكار في كل ما نقدمه.</p>
+            <p>شاهد <a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Itch.io</a></p>
+        </section>
+
+        <section id="contact" class="animate">
+            <h2 id="section-contact-title"><i class="fas fa-laptop-code"></i> الموقع</h2>
+            <p id="section-contact-content">اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، لكن الجهد كان شخصي. تم تصميم الموقع بعناية فائقة لتقديم تجربة مستخدم سلسة ومميزة، مع الاهتمام بأدق التفاصيل لضمان واجهة مستخدم احترافية.</p>
+        </section>
+
+        <section id="goals" class="animate">
+            <h2 id="section-goals-title"><i class="fas fa-bullseye"></i> ما هو الهدف</h2>
+            <p id="section-goals-content">أهدف لتعلم C و Assembbly لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال. أسعى لبناء مشاريع مبتكرة تجمع بين التقنية المتطورة وتجربة المستخدم المميزة، مع التركيز على إنشاء ألعاب وتطبيقات تترك أثرًا إيجابيًا.</p>
+        </section>
+
+        <section id="contact-me" class="animate">
+            <h2 id="section-contact-me-title"><i class="fas fa-paper-plane"></i> تواصل معي</h2>
+            <p id="section-contact-me-content">للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> salehtsx103@gmail.com</a>. سأكون سعيدًا بالرد على استفساراتكم واقتراحاتكم، أو مناقشة فرص التعاون المحتملة.</p>
+        </section>
     </div>
 
-    <section id="home">
-        <h2 id="section-home-title">تعريف</h2>
-        <p id="section-home-content">مطور برامج مستقل أطمح للتطور ولدي مجموعة من الألعاب لم انشر منها سوى واحدة، وهناك المزيد في المستقبل.</p>
-    </section>
-
-    <section id="about">
-        <h2 id="section-about-title">عني</h2>
-        <p id="section-about-content">هذا الموقع مخصص للمهتمين ببرامج او العاب TSX104.</p>
-        <p>شاهد <a href="https://red-leader3xxx.itch.io/" target="_blank" style="color: #e20000;">Itch.io</a></p>
-    </section>
-
-    <section id="contact">
-        <h2 id="section-contact-title">الموقع</h2>
-        <p id="section-contact-content">اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، لكن الجهد كان شخصي.</p>
-    </section>
-
-    <section id="goals">
-        <h2 id="section-goals-title">ما هو الهدف</h2>
-        <p id="section-goals-content">أهدف لتعلم C# و JavaScript، لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال.</p>
-    </section>
-
-    <section id="contact-me">
-        <h2 id="section-contact-me-title">تواصل معي</h2>
-        <p id="section-contact-me-content">للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: <a href="mailto:salehtsx103@gmail.com">salehtsx103@gmail.com</a>.</p>
-    </section>
-
     <footer>
-        <p id="copyright-text">جميع الحقوق محفوظة &copy; 1446</p>
+        <div class="social-links">
+            <a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i></a>
+            <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p id="copyright-text">جميع الحقوق محفوظة &copy; 1446 | TSX104</p>
     </footer>
 
     <script>
         let isDarkMode = false;
         let isArabic = true;
 
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes on load
+            document.querySelectorAll('section').forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add('animate');
+                }, 200 * index);
+            });
+        });
+
         const toggleTheme = () => {
             isDarkMode = !isDarkMode;
-            document.body.style.backgroundColor = isDarkMode ? '#222' : '#f4f4f4';
-            document.body.style.color = isDarkMode ? '#f0f0f0' : '#444444';
+            document.body.classList.toggle('dark-mode', isDarkMode);
 
-            document.querySelectorAll('header, nav, section, footer').forEach(el => {
-                el.style.backgroundColor = isDarkMode ? '#35424a' : '#ffffff';
-            });
-            const panel = document.getElementById('panel');
-            const panelContent = document.getElementById('panel-content');
-            panel.classList.toggle('night-mode', isDarkMode);
-            panelContent.style.color = isDarkMode ? '#ffffff' : '#000000';
-            document.getElementById('toggle-theme').innerText = isDarkMode ? 'ليلي' : 'نهاري';
+            const themeIcon = document.querySelector('#toggle-theme i');
+            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+
+            document.getElementById('toggle-theme').innerHTML = isDarkMode ?
+                `<i class="fas fa-sun"></i> ${isArabic ? 'ليلي' : 'Dark'}` :
+                `<i class="fas fa-moon"></i> ${isArabic ? 'نهاري' : 'Light'}`;
         };
 
         const toggleLanguage = () => {
             isArabic = !isArabic;
+            document.body.classList.toggle('en', !isArabic);
 
             if (isArabic) {
-                document.getElementById('website-title').innerText = "موقع TSX104 ياهلا فيك في";
-                document.getElementById('nav-home').innerText = "تعريف";
-                document.getElementById('nav-about').innerText = "عني";
-                document.getElementById('nav-contact').innerText = "الموقع";
-                document.getElementById('nav-goals').innerText = "اهدافي";
-                document.getElementById('nav-contact-me').innerText = "تواصل معي";
-                document.getElementById('nav-projects').innerText = "مشاريع";
-                document.getElementById('toggle-language').innerText = "English";
-                document.getElementById('section-home-title').innerText = "تعريف";
-                document.getElementById('section-home-content').innerText = "مطور برامج حديث يطمح للتطور ولديه مجموعة من الألعاب لم يُنشر منها سوى واحدة، وهناك المزيد في المستقبل.";
-                document.getElementById('section-about-title').innerText = "عني";
-                document.getElementById('section-about-content').innerText = "هذا الموقع مخصص لتقديم معلومات برامج و العاب TSX104.";
-                document.getElementById('section-contact-title').innerText = "الموقع";
-                document.getElementById('section-contact-content').innerText = "لقد عملت على هذا الموقع لحالي، رغم أن هناك بعض المساعدة من الذكاء الاصطناعي، إلا أن الجهد كان شخصياً.";
-                document.getElementById('section-goals-title').innerText = "ما هو الهدف";
-                document.getElementById('section-goals-content').innerText = "أهدف لتعلم C# و JavaScript، لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال.";
-                document.getElementById('section-contact-me-title').innerText = "تواصل معي";
-                document.getElementById('section-contact-me-content').innerText = "للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: salehtsx103@gmail.com.";
-                document.getElementById('copyright-text').innerText = "تم حفظ حقوق الملكية لعام &copy; 1446";
-                document.getElementById('toggle-theme').innerText = isDarkMode ? 'ليلي' : 'نهاري';
+                document.getElementById('website-title').innerText = "TSX104 ياهلا فيك في موقع";
+                document.getElementById('nav-home').innerHTML = '<i class="fas fa-home"></i> تعريف';
+                document.getElementById('nav-about').innerHTML = '<i class="fas fa-user"></i> عني';
+                document.getElementById('nav-contact').innerHTML = '<i class="fas fa-globe"></i> الموقع';
+                document.getElementById('nav-goals').innerHTML = '<i class="fas fa-flag-checkered"></i> اهدافي';
+                document.getElementById('nav-contact-me').innerHTML = '<i class="fas fa-envelope"></i> تواصل معي';
+                document.getElementById('nav-projects').innerHTML = '<i class="fas fa-code-branch"></i> أكثر';
+                document.getElementById('toggle-language').innerHTML = '<i class="fas fa-language"></i> English';
+                document.getElementById('section-home-title').innerHTML = '<i class="fas fa-star"></i> تعريف';
+                document.getElementById('section-home-content').innerText = "مطور برامج مستقل أطمح للتطور ولدي مجموعة من الألعاب ، وهناك المزيد في المستقبل. أسعى دائمًا لتطوير مهاراتي وإنشاء تجارب مميزة للمستخدمين من خلال العاب عالية الجودة.";
+                document.getElementById('section-about-title').innerHTML = '<i class="fas fa-info-circle"></i> عني';
+                document.getElementById('section-about-content').innerText = "هذا الموقع مخصص للمهتمين ببرامج او العاب TSX104. نهدف إلى تقديم محتوى مميز وتجربة فريدة لكل زائر، مع التركيز على الجودة والابتكار في كل ما نقدمه.";
+                document.getElementById('section-contact-title').innerHTML = '<i class="fas fa-laptop-code"></i> الموقع';
+                document.getElementById('section-contact-content').innerText = "اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، لكن الجهد كان شخصي. تم تصميم الموقع بعناية فائقة لتقديم تجربة مستخدم سلسة ومميزة، مع الاهتمام بأدق التفاصيل لضمان واجهة مستخدم احترافية.";
+                document.getElementById('section-goals-title').innerHTML = '<i class="fas fa-bullseye"></i> ما هو الهدف';
+                document.getElementById('section-goals-content').innerText = "أهدف لتعلم C و Assembbly، لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال. أسعى لبناء مشاريع مبتكرة تجمع بين التقنية المتطورة وتجربة المستخدم المميزة، مع التركيز على إنشاء ألعاب وتطبيقات تترك أثرًا إيجابيًا.";
+                document.getElementById('section-contact-me-title').innerHTML = '<i class="fas fa-paper-plane"></i> تواصل معي';
+                document.getElementById('section-contact-me-content').innerHTML = 'للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> salehtsx103@gmail.com</a>. سأكون سعيدًا بالرد على استفساراتكم واقتراحاتكم، أو مناقشة فرص التعاون المحتملة.';
+                document.getElementById('copyright-text').innerHTML = "جميع الحقوق محفوظة &copy; 1446 | TSX104";
+                document.getElementById('toggle-theme').innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> ليلي' : '<i class="fas fa-moon"></i> نهاري';
 
                 document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
                     switch (index) {
                         case 0:
-                            item.innerText = "مشاريعي";
-                            item.setAttribute('data-content', "لعبتان <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>اضغط هنا</a> لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل");
+                            item.innerHTML = '<i class="fas fa-gamepad"></i> مشاريعي';
+                            item.setAttribute('data-content', "أملك عدة العاب <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل");
                             break;
                         case 1:
-                            item.innerText = "حساباتي";
+                            item.innerHTML = '<i class="fas fa-id-card"></i> حساباتي';
                             item.setAttribute('data-content', "تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.");
                             break;
                         case 2:
-                            item.innerText = "تطوير";
+                            item.innerHTML = '<i class="fas fa-code"></i> تطوير';
                             item.setAttribute('data-content', ".القادم UnrealEngine و UnityEngine يتم تطوير الالعاب على ");
                             break;
                         case 3:
-                            item.innerText = "صفحتي";
+                            item.innerHTML = '<i class="fas fa-file-code"></i> صفحتي';
                             item.setAttribute('data-content', ".GitHubلصنع هذه الصفحه ونشرتها ب HTML استخدمت ");
+                            break;
+                        case 4:
+                            item.innerHTML = '<i class="fas fa-briefcase"></i> Txstudio';
+                            item.setAttribute('data-content', ".هذاالاستوديو خاص بتطوير الالعاب يمكنك التواصل معي وطلب الانضمام هدفي هو جعل Txstudio احد اكبر استديوهات الشرق الاوسط سنعمل\nعلى UnrealEngine و UnityEngine");
+                            break;
                     }
                 });
             } else {
-                document.getElementById('website-title').innerText = "TSX104 Website Welcome";
-                document.getElementById('nav-home').innerText = "Introduction";
-                document.getElementById('nav-about').innerText = "About Me";
-                document.getElementById('nav-contact').innerText = "The Website";
-                document.getElementById('nav-goals').innerText = "My Goals";
-                document.getElementById('nav-contact-me').innerText = "Contact Me";
-                document.getElementById('nav-projects').innerText = "Projects";
-                document.getElementById('toggle-language').innerText = "العربية";
-                document.getElementById('section-home-title').innerText = "Introduction";
-                document.getElementById('section-home-content').innerText = "An indie software developer aiming to evolve with a collection of games, only one of which has been published, with more to come.";
-                document.getElementById('section-about-title').innerText = "About Me";
-                document.getElementById('section-about-content').innerText = "This website was created for those interested in TSX104 news, topics, games, and programs.";
-                document.getElementById('section-contact-title').innerText = "The Website";
-                document.getElementById('section-contact-content').innerText = "I have worked on this website alone; although there was some help from AI, the effort was personal.";
-                document.getElementById('section-goals-title').innerText = "What is the Goal";
-                document.getElementById('section-goals-content').innerText = "I aim to learn C# and JavaScript, but currently, there's not enough time to learn them. I aspire to transition from an independent developer to a professional developer in this field.";
-                document.getElementById('section-contact-me-title').innerText = "Contact Me";
-                document.getElementById('section-contact-me-content').innerText = "To contact me, you can send a message to the email: salehtsx103@gmail.com.";
-                document.getElementById('copyright-text').innerText = "All rights reserved &copy; 2025";
-                document.getElementById('toggle-theme').innerText = isDarkMode ? 'Dark' : 'light';
+                document.getElementById('website-title').innerText = "Welcome to TSX104 Website";
+                document.getElementById('nav-home').innerHTML = '<i class="fas fa-home"></i> Introduction';
+                document.getElementById('nav-about').innerHTML = '<i class="fas fa-user"></i> About Me';
+                document.getElementById('nav-contact').innerHTML = '<i class="fas fa-globe"></i> The Website';
+                document.getElementById('nav-goals').innerHTML = '<i class="fas fa-flag-checkered"></i> My Goals';
+                document.getElementById('nav-contact-me').innerHTML = '<i class="fas fa-envelope"></i> Contact Me';
+                document.getElementById('nav-projects').innerHTML = '<i class="fas fa-code-branch"></i> More';
+                document.getElementById('toggle-language').innerHTML = '<i class="fas fa-language"></i> العربية';
+                document.getElementById('section-home-title').innerHTML = '<i class="fas fa-star"></i> Introduction';
+                document.getElementById('section-home-content').innerText = "An indie software developer aiming to evolve with a collection of games, with more to come. I am constantly working to improve my skills and create exceptional user experiences through high-quality products.";
+                document.getElementById('section-about-title').innerHTML = '<i class="fas fa-info-circle"></i> About Me';
+                document.getElementById('section-about-content').innerText = "This website was created for those interested in TSX104 news, topics, games, and programs. We aim to provide unique content and an exceptional experience for every visitor, focusing on quality and innovation in everything we offer.";
+                document.getElementById('section-contact-title').innerHTML = '<i class="fas fa-laptop-code"></i> The Website';
+                document.getElementById('section-contact-content').innerText = "I have worked on this website alone; although there was some help from AI, the effort was personal. The site was meticulously designed to provide a smooth and distinctive user experience, with attention to the finest details to ensure a professional user interface.";
+                document.getElementById('section-goals-title').innerHTML = '<i class="fas fa-bullseye"></i> What is the Goal';
+                document.getElementById('section-goals-content').innerText = "I aim to learn C and Assembbly, but currently, there's not enough time to learn them. I aspire to transition from an independent developer to a professional developer in this field. I seek to build innovative projects that combine advanced technology and outstanding user experience, focusing on creating games and applications that leave a positive impact.";
+                document.getElementById('section-contact-me-title').innerHTML = '<i class="fas fa-paper-plane"></i> Contact Me';
+                document.getElementById('section-contact-me-content').innerHTML = 'To contact me, you can send a message to the email: <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> salehtsx103@gmail.com</a>. I will be happy to respond to your inquiries and suggestions, or discuss potential collaboration opportunities.';
+                document.getElementById('copyright-text').innerHTML = "All rights reserved &copy; 2025 | TSX104";
+                document.getElementById('toggle-theme').innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> Dark' : '<i class="fas fa-moon"></i> Light';
 
                 document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
                     switch (index) {
                         case 0:
-                            item.innerText = "My Projects";
-                            item.setAttribute('data-content', "I have two games, which are 'شرطة المتخلفين' and 'red person' <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>Click here</a>, but I'm working on strong apps and games.");
+                            item.innerHTML = '<i class="fas fa-gamepad"></i> My Projects';
+                            item.setAttribute('data-content', "I have several games <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(Click here)</a> to see them, but I'm working on powerful apps and games for the future.");
                             break;
                         case 1:
-                            item.innerText = "My Accounts";
+                            item.innerHTML = '<i class="fas fa-id-card"></i> My Accounts';
                             item.setAttribute('data-content', "Contact me via email: salehtsx103@gmail.com or through <a href='https://red-leader3xxx.itch.io/' target='_blank'>my Itch.io page</a>.");
                             break;
                         case 2:
-                            item.innerText = "Developer";
-                            item.setAttribute('data-content', "I make Game in Unity Now but Unreal is Next.");
+                            item.innerHTML = '<i class="fas fa-code"></i> Development';
+                            item.setAttribute('data-content', "I develop games in Unity now but Unreal Engine is next.");
                             break;
                         case 3:
-                            item.innerText = "My Website";
-                            item.setAttribute('data-content', "This Website is made using HTML but published using GitHub.");
+                            item.innerHTML = '<i class="fas fa-file-code"></i> My Website';
+                            item.setAttribute('data-content', "This website is made using HTML and published using GitHub.");
+                            break;
+                        case 4:
+                            item.innerHTML = '<i class="fas fa-briefcase"></i> TxStudio';
+                            item.setAttribute('data-content', "This Studio is indie Studio Now you can connect me and join TxStudio wants to be the frist in M-E.");
                             break;
                     }
                 });
             }
         };
 
+        // Event listeners
         document.getElementById('toggle-theme').addEventListener('click', toggleTheme);
         document.getElementById('toggle-language').addEventListener('click', toggleLanguage);
+
+        document.querySelectorAll('.dropdown-item').forEach
         document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', () => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
                 const content = item.getAttribute('data-content');
                 document.getElementById('panel-content').innerHTML = content;
                 document.getElementById('panel').style.display = 'block';
+
+                // Animate panel display
+                document.getElementById('panel').classList.add('animate');
             });
         });
+
         document.getElementById('close-panel').addEventListener('click', () => {
-            document.getElementById('panel').style.display = 'none';
+            // Animate panel hide
+            const panel = document.getElementById('panel');
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                panel.style.display = 'none';
+                panel.style.opacity = '1';
+                panel.style.transform = 'translateY(0)';
+            }, 300);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                if(this.getAttribute('href') === '#') return;
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Interactive effects
+        document.querySelectorAll('section').forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.transform = 'translateY(-5px)';
+                section.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+            });
+
+            section.addEventListener('mouseleave', () => {
+                section.style.transform = 'translateY(0)';
+                section.style.boxShadow = 'var(--box-shadow)';
+            });
         });
     </script>
 </body>

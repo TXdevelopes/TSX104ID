@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSX 104ID</title>
+    <link rel="icon" type="image/png" href="assets/TXGAMES.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/TXGAMES.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="assets/TXGAMES.png">
     <meta name="google-site-verification" content="zPFdVNmgzOhoz7phhrFlb0pZRPBL2LgmlzUL8lyHzbg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -24,6 +27,10 @@
             --gold-gradient: linear-gradient(135deg, #f6e27a 0%, #d4af37 50%, #a67c00 100%);
             --blue-gradient: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1e3a8a 100%);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+            --neon-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+            --hover-transform: scale(1.02) translateY(-3px);
         }
 
         body {
@@ -54,11 +61,12 @@
 
         header {
             background: var(--blue-gradient);
-            padding: 60px 0;
+            padding: 80px 0;
             color: var(--light-text);
             position: relative;
             overflow: hidden;
             box-shadow: var(--box-shadow);
+            border-bottom: 3px solid var(--gold);
         }
 
         header::before {
@@ -69,14 +77,31 @@
             right: 0;
             bottom: 0;
             background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
-            opacity: 0.2;
+            opacity: 0.15;
             z-index: 0;
+            animation: slowZoom 20s infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
         .header-content {
             position: relative;
             z-index: 1;
             text-align: center;
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            animation: floatIn 1s ease-out;
+        }
+
+        @keyframes floatIn {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         .header-content h1 {
@@ -92,14 +117,22 @@
         }
 
         .logo {
-            max-width: 180px;
+            max-width: 200px;
             margin-bottom: 30px;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
-            transition: transform 0.5s ease;
+            filter: drop-shadow(0 0 10px var(--accent-color));
+            transition: var(--transition);
+            border-radius: 50%;  /* لجعل الصورة دائرية */
+            aspect-ratio: 1;    /* للتأكد من أن الصورة مربعة قبل جعلها دائرية */
+            object-fit: cover;  /* لضمان تغطية كاملة للصورة في الشكل الدائري */
+            background: var(--glass-bg);  /* لإضافة خلفية شفافة */
+            padding: 10px;      /* لإضافة مساحة داخلية */
+            border: 3px solid var(--gold);  /* لإضافة إطار ذهبي */
         }
 
         .logo:hover {
             transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 0 20px var(--gold));
+            border-color: var(--accent-color);  /* تغيير لون الإطار عند التحويم */
         }
 
         .options-bar {
@@ -114,27 +147,32 @@
 
         .toggle-btn {
             cursor: pointer;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 20px;
             color: var(--light-text);
             transition: var(--transition);
             font-weight: 500;
+            background: var(--glass-bg);
+            border: var(--glass-border);
         }
 
         .toggle-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: var(--gold);
+            color: var(--dark-text);
+            transform: var(--hover-transform);
         }
 
         nav {
-            background-color: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: 50px;
-            padding: 5px;
+            padding: 8px;
             margin: 20px auto;
             display: inline-flex;
             position: relative;
             z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--box-shadow);
+            border: var(--glass-border);
         }
 
         nav a {
@@ -147,28 +185,14 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            background: transparent;
         }
 
         nav a:hover {
             color: var(--gold);
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: var(--gold-gradient);
-            transition: width 0.3s ease;
-            z-index: -1;
-        }
-
-        nav a:hover::before {
-            width: 80%;
+            text-shadow: var(--neon-shadow);
+            background: rgba(255, 255, 255, 0.1);
+            transform: var(--hover-transform);
         }
 
         .dropdown {
@@ -286,29 +310,36 @@
             position: relative;
             overflow: hidden;
             transition: var(--transition);
-            max-width: 1000px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .dark-mode section {
-            background: #1e293b;
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        section:hover {
+            transform: var(--hover-transform);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         section::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: var(--blue-gradient);
-            opacity: 0.1;
-            border-radius: 0 0 0 100%;
-            transition: var(--transition);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+            pointer-events: none;
         }
 
-        section:hover::before {
-            width: 150px;
-            height: 150px;
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
         }
 
         section h2 {
@@ -392,19 +423,32 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             color: var(--light-text);
-            margin: 0 10px;
+            margin: 0 15px;
             text-decoration: none;
             transition: var(--transition);
+            border: var(--glass-border);
+            font-size: 1.2rem;
         }
 
         .social-links a:hover {
+            transform: var(--hover-transform);
             background: var(--gold);
-            transform: translateY(-5px);
+            color: var(--dark-text);
+            box-shadow: var(--neon-shadow);
+        }
+
+        /* تحسينات أيقونة التبويب */
+        link[rel="icon"],
+        link[rel="apple-touch-icon"] {
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            background: var(--glass-bg);
+            border: 2px solid var(--gold);
         }
 
         /* Animations */
@@ -473,7 +517,7 @@
                 <span id="toggle-language" class="toggle-btn"><i class="fas fa-language"></i> English</span>
                 <span id="toggle-theme" class="toggle-btn"><i class="fas fa-moon"></i> نهاري</span>
             </div>
-            <img id="l" TSX104ID/TXGAMES.png alt="TSX104 Logo" class="logo animate">
+            <img src="assets/TXGAMES.png" alt="TSX104 Logo" class="logo animate">
             <h1 id="website-title" class="animate">TSX104 ياهلا فيك في موقع</h1>
         </div>
         <div class="container">
@@ -486,7 +530,7 @@
                 <div class="dropdown">
                     <a href="#" id="nav-projects"><i class="fas fa-code-branch"></i> أكثر</a>
                     <div class="dropdown-content">
-                        <a href="#" class="dropdown-item" data-content="أملك عدة العاب <a href='https://red-leader3xxx.itch.io/red-person' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل">
+                        <a href="#" class="dropdown-item" data-content="أملك عدة العاب <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل">
                             <i class="fas fa-gamepad"></i> مشاريعي
                         </a>
                         <a href="#" class="dropdown-item" data-content="تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.">
@@ -605,7 +649,7 @@
                     switch (index) {
                         case 0:
                             item.innerHTML = '<i class="fas fa-gamepad"></i> مشاريعي';
-                            item.setAttribute('data-content', "أملك عدة العاب <a href='https://red-leader3xxx.itch.io/red-person' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل");
+                            item.setAttribute('data-content', "أملك عدة العاب <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل");
                             break;
                         case 1:
                             item.innerHTML = '<i class="fas fa-id-card"></i> حساباتي';
@@ -651,7 +695,7 @@
                     switch (index) {
                         case 0:
                             item.innerHTML = '<i class="fas fa-gamepad"></i> My Projects';
-                            item.setAttribute('data-content', "I have several games <a href='https://red-leader3xxx.itch.io/red-person' target='_blank'>(Click here)</a> to see them, but I'm working on powerful apps and games for the future.");
+                            item.setAttribute('data-content', "I have several games <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(Click here)</a> to see them, but I'm working on powerful apps and games for the future.");
                             break;
                         case 1:
                             item.innerHTML = '<i class="fas fa-id-card"></i> My Accounts';

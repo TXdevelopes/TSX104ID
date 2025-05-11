@@ -48,6 +48,10 @@
             direction: ltr;
         }
 
+        body.fa {
+            direction: rtl;
+        }
+
         body.dark-mode {
             background-color: var(--dark-bg);
             color: var(--light-text);
@@ -566,7 +570,7 @@
         <section id="about" class="animate">
             <h2 id="section-about-title"><i class="fas fa-info-circle"></i> عني</h2>
             <p id="section-about-content">هذا الموقع مخصص للمهتمين ببرامج او العاب TSX104. نهدف إلى تقديم محتوى مميز وتجربة فريدة لكل زائر، مع التركيز على الجودة والابتكار في كل ما نقدمه.</p>
-            <p>شاهد <a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Itch.io</a></p>
+            <p><a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Itch.io</a></p>
         </section>
 
         <section id="contact" class="animate">
@@ -589,7 +593,7 @@
         <div class="social-links">
             <a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i></a>
             <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/TSX103/TSX104ID" target="_blank"><i class="fab fa-github"></i></a>
         </div>
         <p id="copyright-text">جميع الحقوق محفوظة &copy; 1446 | TSX104</p>
     </footer>
@@ -622,6 +626,7 @@
         const toggleLanguage = () => {
             isArabic = !isArabic;
             document.body.classList.toggle('en', !isArabic);
+            document.body.classList.remove('fa');
 
             if (isArabic) {
                 document.getElementById('website-title').innerText = "TSX104 ياهلا فيك في موقع";

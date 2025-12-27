@@ -2,13 +2,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSX 105ID</title>
+    <title>TSX 104ID</title>
     <meta name="google-site-verification" content="zPFdVNmgzOhoz7phhrFlb0pZRPBL2LgmlzUL8lyHzbg" />
     <link rel="icon" href="TXStudio2Panel.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Orbitron:wght@400;500;600;700;900&display=swap');
+
+        section {
+            scroll-margin-top: 180px;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 0;
+            }
+            
+            .header-content h1 {
+                font-size: 1.5rem;
+            }
+        
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+                border-radius: 15px;
+            }
+        
+            nav a {
+                font-size: 0.8rem;
+                padding: 8px 10px;
+            }
+            
+            section {
+                scroll-margin-top: 120px; 
+                margin: 15px auto;
+                padding: 20px;
+            }
+        }
 
         :root {
             --primary-color: #000; 
@@ -322,7 +355,7 @@
                 inset 0 0 30px rgba(0, 242, 255, 0.05);
             border-radius: 15px;
             padding: 20px 0;
-            z-index: 10;
+            z-index: 0;
             opacity: 0;
             transition: var(--transition);
             border: 1px solid rgba(0, 242, 255, 0.4);
@@ -843,7 +876,7 @@
 
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 160,
                         behavior: 'smooth'
                     });
                 }
@@ -864,4 +897,3 @@
     </script>
 </body>
 </html>
-

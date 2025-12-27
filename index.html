@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSX 104ID</title>
+    <title>TSX 105ID</title>
     <meta name="google-site-verification" content="zPFdVNmgzOhoz7phhrFlb0pZRPBL2LgmlzUL8lyHzbg" />
     <link rel="icon" href="TXStudio2Panel.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -866,22 +866,29 @@
         });
 
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
 
-                if(this.getAttribute('href') === '#') return;
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+        const targetElement = document.querySelector(targetId);
 
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 160,
-                        behavior: 'smooth'
-                    });
-                }
+        if(targetElement) {
+            // حساب الموقع بدقة مع مراعاة التمرير الحالي وطرح مسافة الهيدر (160px)
+            const offset = 160; 
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = targetElement.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
-        });
+        }
+    });
+});
 
         document.querySelectorAll('section').forEach(section => {
             section.addEventListener('mouseenter', () => {
@@ -897,4 +904,3 @@
     </script>
 </body>
 </html>
-

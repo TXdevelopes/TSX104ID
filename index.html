@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,49 +8,93 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Orbitron:wght@400;500;600;700;900&display=swap');
 
         :root {
-            /* Futuristic Game Developer Color Palette */
-            --primary-color: #2A0050; /* Deep Space Violet - for main elements, footer, dark accents */
-            --secondary-color: #6A0DAD; /* Electric Indigo - for links, hover states, bright accents */
-            --accent-color: #3c00ff; /* Cyber Green - for strong highlights, headings in dark mode */
-            --dark-bg: #0A0A0A; /* Deepest Night - for body background in dark mode */
-            --light-bg: #1A1A1A; /* Darkened Steel - for sections/panels background in dark mode (and body in light mode, giving a consistent dark theme by default) */
-            --dark-text: #E0E0E0; /* Light Silver - for general text on dark backgrounds */
-            --light-text: #F0F0F0; /* Bright White - for header text and very light elements */
-            --gold: var(--accent-color); /* Re-purposed to Cyber Green for consistency */
-            --silver: #808080; /* Medium Grey - for subtle elements */
-            --box-shadow: 0 10px 25px rgba(255, 255, 255, 0.09); /* Stronger, darker shadow for depth */
-            --gold-gradient: linear-gradient(135deg, #00FFC0 0%, #6A0DAD 50%, #2A0050 100%); /* Futuristic gradient: Cyber Green to Electric Indigo to Deep Space Violet */
-            --blue-gradient: linear-gradient(135deg, #6A0DAD 0%, #2A0050 100%); /* Deeper futuristic gradient: Electric Indigo to Deep Space Violet */
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --primary-color: #000; 
+            --secondary-color: #0077ff; 
+            --accent-color: #00f2ff; 
+            --accent-pink: #ff0080;
+            --dark-bg: #020408; 
+            --light-bg: #0a111f; 
+            --dark-text: #100; 
+            --light-text: #e6f1ff; 
+            --gold: var(--accent-color); 
+            --silver: #46546d; 
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 242, 255, 0.05); 
+            --gold-gradient: linear-gradient(135deg, #00f2ff 0%, #0077ff 50%, #04080f 100%); 
+            --cyber-gradient: linear-gradient(135deg, #00f2ff 0%, #ff0080 100%);
+            --blue-gradient: linear-gradient(135deg, #0077ff 0%, #050a14 100%); 
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         body {
-            font-family: 'Cairo', 'Poppins', sans-serif;
-            background-color: var(--light-bg); /* Default body background is dark gray for a tech feel */
-            color: var(--dark-text); /* Default text color is light silver */
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             direction: rtl;
             transition: var(--transition);
+            position: relative;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+
+        /* Cyberpunk grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated cyber particles */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, rgba(0, 242, 255, 0.4), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(255, 0, 128, 0.4), transparent),
+                radial-gradient(1px 1px at 50% 50%, rgba(0, 119, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 80% 10%, rgba(0, 242, 255, 0.3), transparent);
+            background-size: 200% 200%;
+            animation: particleFloat 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 80% 10%; }
+            50% { background-position: 100% 100%, 0% 0%, 30% 70%, 20% 90%; }
         }
 
         body.en {
             direction: ltr;
         }
 
-        body.dark-mode {
-            background-color: var(--dark-bg); /* Darker background in explicit dark mode */
-            color: var(--light-text); /* Slightly brighter text in explicit dark mode */
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         header {
@@ -60,7 +103,27 @@
             color: var(--light-text);
             position: relative;
             overflow: hidden;
-            box-shadow: var(--box-shadow);
+            box-shadow: 
+                var(--box-shadow),
+                inset 0 0 100px rgba(0, 242, 255, 0.1);
+            border-bottom: 2px solid rgba(0, 242, 255, 0.3);
+        }
+
+        /* Scanning line effect */
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         header::before {
@@ -71,7 +134,7 @@
             right: 0;
             bottom: 0;
             background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
-            opacity: 0.1; /* Reduced opacity to blend better with dark theme */
+            opacity: 0.05;
             z-index: 0;
         }
 
@@ -85,37 +148,70 @@
             font-size: 3rem;
             margin-bottom: 20px;
             font-weight: 700;
-            /* Changed text-shadow for black transparent effect */
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-            /* Removed background and -webkit-background-clip to allow direct color application */
-            background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
-            -webkit-text-fill-color: unset;
-            color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+            font-family: 'Orbitron', 'Cairo', sans-serif;
+            text-shadow: 
+                0 0 10px rgba(0, 242, 255, 0.8),
+                0 0 20px rgba(0, 242, 255, 0.5),
+                0 0 30px rgba(0, 242, 255, 0.3),
+                2px 2px 8px rgba(0, 0, 0, 0.6);
+            color: var(--accent-color);
             display: inline-block;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 242, 255, 0.8), 0 0 20px rgba(0, 242, 255, 0.5), 0 0 30px rgba(0, 242, 255, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(0, 242, 255, 1), 0 0 30px rgba(0, 242, 255, 0.8), 0 0 40px rgba(0, 242, 255, 0.5); }
         }
 
         .logo {
             max-width: 180px;
             margin-bottom: 30px;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5)); /* Stronger drop shadow */
-            transition: transform 0.5s ease;
+            filter: 
+                drop-shadow(0 0 10px rgba(0, 242, 255, 0.6))
+                drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+            transition: transform 0.5s ease, filter 0.5s ease;
         }
 
         .logo:hover {
             transform: scale(1.1) rotate(5deg);
+            filter: 
+                drop-shadow(0 0 20px rgba(0, 242, 255, 1))
+                drop-shadow(0 0 30px rgba(255, 0, 128, 0.6))
+                drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
         }
 
         .options-bar {
             display: flex;
             justify-content: space-between;
             padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.05); /* Lighter transparent background */
+            background: 
+                linear-gradient(135deg, rgba(0, 242, 255, 0.1) 0%, rgba(0, 119, 255, 0.1) 100%);
             border-radius: 50px;
             margin: 0 auto 20px;
             width: fit-content;
-            border: 1px solid rgba(0, 255, 192, 0.3); /* Subtle accent border */
+            border: 1px solid rgba(0, 242, 255, 0.4);
+            box-shadow: 
+                0 0 20px rgba(0, 242, 255, 0.2),
+                inset 0 0 20px rgba(0, 242, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .options-bar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 242, 255, 0.1), transparent);
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .toggle-btn {
@@ -125,24 +221,44 @@
             color: var(--light-text);
             transition: var(--transition);
             font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         .toggle-btn:hover {
-            background-color: rgba(0, 255, 192, 0.1); /* Hover matches accent color */
+            background: rgba(0, 242, 255, 0.2);
             color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
         }
 
         nav {
-            background-color: rgba(255, 255, 255, 0.08); /* Slightly more opaque for better readability */
-            backdrop-filter: blur(15px); /* Increased blur for futuristic feel */
+            background: 
+                linear-gradient(135deg, rgba(0, 242, 255, 0.08) 0%, rgba(0, 119, 255, 0.08) 100%);
+            backdrop-filter: blur(20px);
             border-radius: 50px;
             padding: 5px;
             margin: 20px auto;
             display: inline-flex;
             position: relative;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow */
-            border: 1px solid rgba(106, 13, 173, 0.3); /* Subtle primary color border */
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(0, 242, 255, 0.1),
+                inset 0 0 20px rgba(0, 242, 255, 0.05);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+        }
+
+        nav::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-pink), var(--secondary-color));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
         }
 
         nav a {
@@ -159,7 +275,9 @@
         }
 
         nav a:hover {
-            color: var(--accent-color); /* Hover text color is Cyber Green */
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+            background: rgba(0, 242, 255, 0.1);
         }
 
         nav a::before {
@@ -170,10 +288,11 @@
             transform: translateX(-50%);
             width: 0;
             height: 3px;
-            background: var(--gold-gradient); /* Futuristic gradient */
+            background: var(--cyber-gradient);
             border-radius: 2px;
             transition: width 0.3s ease;
             z-index: -1;
+            box-shadow: 0 0 10px var(--accent-color);
         }
 
         nav a:hover::before {
@@ -187,97 +306,174 @@
 
         .dropdown-content {
             display: none;
-            position: absolute;
-            right: 0;
-            top: -550%; /* Adjusted if needed, but keeping original for now */
-            min-width: 100px;
-            background: rgba(42, 0, 80, 0.95); /* Deeper primary color with higher opacity */
+            position: fixed;
+            left: 0%;
+            top: 0%;
+            transform: translate(-50%, -50%);
+            min-width: 300px;
+            width: max-content;
+            max-width: 400px;
+            background: 
+                linear-gradient(135deg, rgba(10, 17, 31, 0.98) 0%, rgba(2, 4, 8, 0.98) 100%);
             backdrop-filter: blur(20px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            box-shadow: 
+                0 8px 30px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(0, 242, 255, 0.2),
+                inset 0 0 30px rgba(0, 242, 255, 0.05);
             border-radius: 15px;
-            padding: 15px 0;
-            z-index: 200;
-            transform: translateY(10px);
+            padding: 20px 0;
+            z-index: 10;
             opacity: 0;
             transition: var(--transition);
-            margin-top: 10px;
-            border: 1px solid rgba(106, 13, 173, 0.4); /* Border with secondary color */
+            border: 1px solid rgba(0, 242, 255, 0.4);
         }
 
         body.en .dropdown-content {
-            right: auto;
-            left: 0;
+            left: 50%;
         }
 
         .dropdown:hover .dropdown-content {
             display: block;
             opacity: 1;
-            transform: translateY(0);
         }
 
         .dropdown-content a {
             color: var(--light-text);
-            padding: 12px 20px;
+            padding: 16px 30px;
             text-decoration: none;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             transition: var(--transition);
             border-radius: 0;
-            margin: 5px 10px;
+            margin: 8px 20px;
             text-align: right;
+            position: relative;
+            white-space: nowrap;
+            font-size: 1.05rem;
+        }
+
+        .dropdown-content a i {
+            min-width: 28px;
+            font-size: 1.2rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .dropdown-content a span {
+            flex: 1;
+        }
+
+        .dropdown-content a::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--cyber-gradient);
+            transition: height 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .dropdown-content a:hover::before {
+            height: 70%;
         }
 
         body.en .dropdown-content a {
             text-align: left;
+            flex-direction: row;
+        }
+
+        body.en .dropdown-content a::before {
+            right: auto;
+            left: 0;
         }
 
         .dropdown-content a:hover {
-            background-color: rgba(106, 13, 173, 0.2); /* Hover with secondary color */
-            color: var(--accent-color); /* Text color on hover */
-            padding-right: 30px;
-            border-radius: 10px;
+            background: 
+                linear-gradient(90deg, rgba(0, 242, 255, 0.2) 0%, rgba(0, 242, 255, 0.05) 100%);
+            color: var(--accent-color);
+            padding-right: 40px;
+            border-radius: 12px;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
         }
 
         body.en .dropdown-content a:hover {
-            padding-right: 20px;
-            padding-left: 30px;
+            padding-right: 30px;
+            padding-left: 40px;
+            background: linear-gradient(270deg, rgba(0, 242, 255, 0.2) 0%, rgba(0, 242, 255, 0.05) 100%);
         }
 
-        /* Styles for the new popup behavior */
         .popup-overlay {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dim background */
-            z-index: 999; /* Below popup, above page content */
-            backdrop-filter: blur(5px); /* Subtle blur effect */
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            backdrop-filter: blur(10px);
             animation: fadeIn 0.3s ease;
         }
 
         .panel {
-            display: none; /* Controlled by JS */
+            display: none; /* سيتم تغييره بواسطة JS */
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%; /* Responsive width */
-            max-width: 600px; /* Max width for larger screens */
-            background: var(--light-bg); /* Darkened Steel background for panel */
-            padding: 30px;
+            transform: translate(-50%, -50%); /* يضمن التوسط الحقيقي */
+            width: 90%;
+            max-width: 500px;
+            background: linear-gradient(135deg, rgba(10, 17, 31, 0.98) 0%, rgba(2, 4, 8, 0.98) 100%);
+            padding: 40px 20px;
             border-radius: 20px;
-            box-shadow: var(--box-shadow);
-            border-top: 5px solid var(--accent-color); /* Cyber Green top border */
-            z-index: 1000; /* High z-index to appear on top */
-            animation: fadeIn 0.3s ease; /* Faster animation for popup */
-            color: var(--dark-text); /* Light silver text for readability */
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.3);
+            border: 2px solid var(--accent-color);
+            z-index: 10001; /* أعلى من كل شيء */
+            color: var(--light-text);
+            text-align: center; /* يخلي النصوص والروابط في النص */
+        }
+        
+        #panel-content {
+            margin-top: 20px;
+            line-height: 1.6;
         }
 
-        .dark-mode .panel {
-            background: var(--light-bg); /* Consistent dark background */
-            border-top: 5px solid var(--accent-color); /* Cyber Green top border */
-            color: var(--light-text); /* Brighter text in dark mode */
+/* تأكد أن الـ Overlay خلف المربع مباشرة */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+}
+
+        /* Animated border effect */
+        .panel::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-pink), var(--secondary-color), var(--accent-color));
+            background-size: 300% 300%;
+            animation: borderGlow 3s linear infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .close-btn {
@@ -285,7 +481,7 @@
             top: 15px;
             right: 15px;
             cursor: pointer;
-            color: #ff4d4d; /* More vibrant error/close color */
+            color: #ff4d4d;
             font-size: 1.2rem;
             width: 30px;
             height: 30px;
@@ -295,6 +491,8 @@
             border-radius: 50%;
             background: rgba(255, 77, 77, 0.1);
             transition: var(--transition);
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            z-index: 2;
         }
 
         body.en .close-btn {
@@ -303,52 +501,84 @@
         }
 
         .close-btn:hover {
-            background: rgba(255, 77, 77, 0.2);
+            background: rgba(255, 77, 77, 0.3);
             transform: rotate(90deg);
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
         }
 
         section {
-            background: var(--light-bg); /* Darkened Steel background for sections */
+            background: 
+                linear-gradient(135deg, rgba(10, 17, 31, 0.8) 0%, rgba(2, 4, 8, 0.8) 100%);
             border-radius: 20px;
-            box-shadow: var(--box-shadow);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                0 0 40px rgba(0, 242, 255, 0.1),
+                inset 0 0 30px rgba(0, 242, 255, 0.03);
             margin: 30px auto;
             padding: 40px;
             position: relative;
             overflow: hidden;
             transition: var(--transition);
             max-width: 1000px;
-            color: var(--dark-text); /* Light silver text for readability */
+            color: var(--light-text);
+            border: 1px solid rgba(0, 242, 255, 0.2);
         }
 
-        .dark-mode section {
-            background: var(--light-bg); /* Consistent dark background */
-            color: var(--light-text); /* Brighter text in dark mode */
+        /* Corner decorations */
+        section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border-top: 3px solid var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 20px 0 0 0;
+            box-shadow: 0 0 10px var(--accent-color);
         }
 
         section::before {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             right: 0;
-            width: 100px;
-            height: 100px;
-            background: var(--blue-gradient); /* Deeper futuristic gradient */
-            opacity: 0.15; /* Slightly increased opacity */
-            border-radius: 0 0 0 100%;
+            width: 40px;
+            height: 40px;
+            border-bottom: 3px solid var(--accent-pink);
+            border-right: 3px solid var(--accent-pink);
+            border-radius: 0 0 20px 0;
+            box-shadow: 0 0 10px var(--accent-pink);
             transition: var(--transition);
         }
 
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.7),
+                0 0 60px rgba(0, 242, 255, 0.2),
+                inset 0 0 40px rgba(0, 242, 255, 0.05);
+            border-color: rgba(0, 242, 255, 0.5);
+        }
+
         section:hover::before {
-            width: 150px;
-            height: 150px;
+            width: 60px;
+            height: 60px;
+        }
+
+        section:hover::after {
+            width: 60px;
+            height: 60px;
         }
 
         section h2 {
-            color: var(--secondary-color); /* Electric Indigo for section titles */
+            color: var(--accent-color);
             font-size: 2rem;
             margin-bottom: 20px;
             position: relative;
             display: inline-block;
+            font-family: 'Orbitron', 'Cairo', sans-serif;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
         }
 
         section h2::after {
@@ -358,17 +588,14 @@
             left: 0;
             width: 50px;
             height: 4px;
-            background: var(--gold-gradient); /* Futuristic gradient */
+            background: var(--cyber-gradient);
             border-radius: 2px;
             transition: var(--transition);
+            box-shadow: 0 0 10px var(--accent-color);
         }
 
         section:hover h2::after {
             width: 100%;
-        }
-
-        .dark-mode section h2 {
-            color: var(--accent-color); /* Cyber Green for headings in explicit dark mode */
         }
 
         section p {
@@ -377,34 +604,31 @@
         }
 
         section a {
-            color: var(--secondary-color); /* Electric Indigo for links */
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
+            position: relative;
         }
 
         section a:hover {
-            color: var(--accent-color); /* Cyber Green on hover */
-            text-decoration: underline;
-        }
-
-        .dark-mode section a {
-            color: var(--accent-color); /* Cyber Green for links in dark mode */
-        }
-
-        .dark-mode section a:hover {
-            color: var(--secondary-color); /* Electric Indigo on hover in dark mode */
+            color: var(--accent-pink);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
         }
 
         footer {
             text-align: center;
             padding: 30px;
-            background: var(--primary-color); /* Deep Space Violet for footer */
+            background: 
+                linear-gradient(135deg, rgba(2, 4, 8, 0.98) 0%, rgba(0, 0, 0, 0.98) 100%);
             color: var(--light-text);
             margin-top: 50px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5); /* Shadow for footer */
+            box-shadow: 
+                0 -5px 20px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(0, 242, 255, 0.1);
+            border-top: 2px solid rgba(0, 242, 255, 0.3);
         }
 
         footer::before {
@@ -414,7 +638,8 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gold-gradient); /* Futuristic gradient */
+            background: var(--cyber-gradient);
+            box-shadow: 0 0 20px var(--accent-color);
         }
 
         .social-links {
@@ -428,22 +653,38 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: 
+                linear-gradient(135deg, rgba(0, 242, 255, 0.1) 0%, rgba(0, 119, 255, 0.1) 100%);
             color: var(--light-text);
             margin: 0 10px;
             text-decoration: none;
             transition: var(--transition);
-            border: 1px solid rgba(0, 255, 192, 0.2); /* Subtle accent border */
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            position: relative;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: var(--cyber-gradient);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
         }
 
         .social-links a:hover {
-            background: var(--accent-color); /* Cyber Green on hover */
-            color: var(--primary-color); /* Deep Space Violet text on hover */
+            color: var(--dark-bg);
             transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 255, 192, 0.4); /* Glow effect */
+            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.6);
+            border-color: transparent;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -452,107 +693,37 @@
         .animate {
             animation: fadeIn 1s ease;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 2rem;
-            }
-
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                border-radius: 20px;
-            }
-
-            nav a {
-                margin: 5px;
-                font-size: 0.9rem;
-                padding: 10px 15px;
-            }
-
-            .dropdown-content {
-                width: 200px;
-                top: auto; /* Allow natural positioning */
-                bottom: 100%; /* Position above on small screens */
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%) translateY(10px);
-                margin-bottom: 10px; /* Space between nav and dropdown */
-            }
-
-            body.en .dropdown-content {
-                right: auto;
-                left: 50%;
-            }
-
-            section {
-                padding: 25px;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            .panel {
-                width: 95%; /* Make popup take more width on small screens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-content h1 {
-                font-size: 1.5rem;
-            }
-
-            .options-bar {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
-            }
-
-            section {
-                padding: 20px;
-                margin: 15px auto;
-            }
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="options-bar">
-                <span id="toggle-language" class="toggle-btn"><i class="fas fa-language"></i> English</span>
-                <span id="toggle-theme" class="toggle-btn"><i class="fas fa-moon"></i> نهاري</span>
+                <span id="toggle-theme" class="toggle-btn"><i class="fas fa-moon"></i> معتم</span>
             </div>
-            <!-- Assuming TXGAMES.png is the logo image name. If not, please correct it. -->
             <img id="l" src="TXStudio2Panel.png" alt="TSX104 Logo" class="logo animate">
-            <h1 id="website-title" class="animate">TSX104 ياهلا فيك في موقع</h1>
+            <h1 id="website-title" class="animate"> ياهلا فيك موقعي</h1>
         </div>
-        <div class="container">
+                    <div class="container">
             <nav class="animate">
                 <a href="#home" id="nav-home"><i class="fas fa-home"></i> تعريف</a>
                 <a href="#about" id="nav-about"><i class="fas fa-user"></i> عني</a>
-                <a href="#contact" id="nav-contact"><i class="fas fa-globe"></i> الموقع</a>
-                <a href="#goals" id="nav-goals"><i class="fas fa-flag-checkered"></i> اهدافي</a>
-                <a href="#contact-me" id="nav-contact-me"><i class="fas fa-envelope"></i> تواصل معي</a>
+                <a href="#goals" id="nav-goals"><i class="fas fa-flag-checkered"></i> هدف الموقع</a>
+                <a href="#contact-me" id="nav-contact-me"><i class="fas fa-envelope"></i> حسابي</a>
                 <div class="dropdown">
                     <a href="#" id="nav-projects"><i class="fas fa-code-branch"></i> أكثر</a>
                     <div class="dropdown-content">
-                        <a href="#" class="dropdown-item" data-content="أملك عدة العاب <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل">
-                            <i class="fas fa-gamepad"></i> مشاريعي
+                        <a href="#" class="dropdown-item" data-content="ما عندي مشاريع برمجيه كثيره حتى الآن لكن هذا حسابي <a href='https://red-leader3xxx.itch.io/' target='_blank'>(اضطلع)</a>">
+                            <i class="fas fa-gamepad"></i><span>مشاريعي</span>
                         </a>
-                        <a href="#" class="dropdown-item" data-content="تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.">
-                            <i class="fas fa-id-card"></i> حساباتي
+                        <a href="#" class="dropdown-item" data-content="<a href='https://twitter.com/TXDevelopes' target='_blank'>(X)</a> <a href='https://www.youtube.com/@TX-Studio-Indie' target='_blank'>(Youtube)</a>.">
+                            <i class="fas fa-id-card"></i><span>حساباتي</span>
                         </a>
-                        <a href="#" class="dropdown-item" data-content=".القادم UnrealEngine و UnityEngine يتم تطوير الالعاب على ">
-                            <i class="fas fa-code"></i> تطوير
+                        <a href="#" class="dropdown-item" data-content="غالبًا ما استخدم UnityEngine.">
+                            <i class="fas fa-code"></i><span>تطويراتي</span>
                         </a>
-                        <a href="#" class="dropdown-item" data-content=".GitHubلصنع هذه الصفحه ونشرتها ب HTML استخدمت ">
-                            <i class="fas fa-file-code"></i> صفحتي
-                        </a>
-                        <a href="#" class="dropdown-item" data-content=".هذاالاستوديو خاص بتطوير الالعاب يمكنك التواصل معي وطلب الانضمام هدفي هو جعل Txstudio احد اكبر استديوهات الشرق الاوسط سنعمل
-                            على UnrealEngine و UnityEngine">
-                            <i class="fas fa-briefcase"></i> Txstudio
+                        <a href="#" class="dropdown-item" data-content=".للحين مافي اي عضو غيري، تقدر تنضم لو حاب وعندك جدية">
+                            <i class="fas fa-briefcase"></i><span>Txstudio</span>
                         </a>
                     </div>
                 </div>
@@ -561,7 +732,6 @@
     </header>
 
     <div class="container">
-        <!-- New popup overlay -->
         <div class="popup-overlay" id="popup-overlay"></div>
 
         <div class="panel" id="panel">
@@ -571,23 +741,24 @@
 
         <section id="home" class="animate">
             <h2 id="section-home-title"><i class="fas fa-star"></i> تعريف</h2>
-            <p id="section-home-content">مطور برامج مستقل أطمح للتطور ولدي مجموعة من الألعاب، وهناك المزيد في المستقبل. أسعى دائمًا لتطوير مهاراتي وإنشاء تجارب مميزة للمستخدمين من خلال العاب عالية الجودة.</p>
+            <p id="section-home-content">اعتقد اني انسان وهذا كل التعريف، ما يحتاج تعرف زيادة.</p>
         </section>
 
         <section id="about" class="animate">
             <h2 id="section-about-title"><i class="fas fa-info-circle"></i> عني</h2>
-            <p id="section-about-content">.</p>
-            <p>شاهد <a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Itch.io</a></p>
+            <p id="section-about-content">مجرد مطور العاب سعودي، اضطلع على حسابي في itch.io.</p>
+            <p> <a href="https://red-leader3xxx.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Itch.io</a></p>
         </section>
         
         <section id="goals" class="animate">
-            <h2 id="section-goals-title"><i class="fas fa-bullseye"></i> ما هو الهدف</h2>
-            <p id="section-goals-content">أهدف لتعلم C و Assembbly لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال. أسعى لبناء مشاريع مبتكرة تجمع بين التقنية المتطورة وتجربة المستخدم المميزة، مع التركيز على إنشاء ألعاب وتطبيقات تترك أثرًا إيجابيًا.</p>
+            <h2 id="section-goals-title"><i class="fas fa-bullseye"></i> هدف الموقع</h2>
+            <p id="section-goals-content"> عشان تشوف احدث اخبار مشاريعي</p>
+            <p id="section-goals-content"> هذا اذا فكرت اعدل الموقع..</p>
         </section>
 
         <section id="contact-me" class="animate">
-            <h2 id="section-contact-me-title"><i class="fas fa-paper-plane"></i> تواصل معي</h2>
-            <p id="section-contact-me-content">للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> salehtsx103@gmail.com</a>. سأكون سعيدًا بالرد على استفساراتكم واقتراحاتكم، أو مناقشة فرص التعاون المحتملة.</p>
+            <h2 id="section-contact-me-title"><i class="fas fa-paper-plane"></i> حسابي</h2>
+            <p id="section-contact-me-content">اذا عندك مشكلة في احد مشاريعي او اي سبب  <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> Email</a>. هذا حسابي.</p>
         </section>
     </div>
 
@@ -597,15 +768,13 @@
             <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i></a>
             <a href="#"><i class="fab fa-github"></i></a>
         </div>
-        <p id="copyright-text">جميع الحقوق محفوظة &copy; 1446 | TSX104</p>
+        <p id="copyright-text">جميع الحقوق محفوظة &copy; 1447-2026 | TSX105</p>
     </footer>
 
     <script>
         let isDarkMode = false;
         let isArabic = true;
-
         document.addEventListener('DOMContentLoaded', function() {
-            // Add animation classes on load
             document.querySelectorAll('section').forEach((section, index) => {
                 setTimeout(() => {
                     section.classList.add('animate');
@@ -621,154 +790,48 @@
             themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
 
             document.getElementById('toggle-theme').innerHTML = isDarkMode ?
-                `<i class="fas fa-sun"></i> ${isArabic ? 'ليلي' : 'Dark'}` :
-                `<i class="fas fa-moon"></i> ${isArabic ? 'نهاري' : 'Light'}`;
+                `<i class="fas fa-sun"></i> ${'مضيء'}` :
+                `<i class="fas fa-moon"></i> ${'معتم'}`;
         };
 
-        const toggleLanguage = () => {
-            isArabic = !isArabic;
-            document.body.classList.toggle('en', !isArabic);
-
-            if (isArabic) {
-                document.getElementById('website-title').innerText = "TSX104 ياهلا فيك في موقع";
-                document.getElementById('nav-home').innerHTML = '<i class="fas fa-home"></i> تعريف';
-                document.getElementById('nav-about').innerHTML = '<i class="fas fa-user"></i> عني';
-                document.getElementById('nav-contact').innerHTML = '<i class="fas fa-globe"></i> الموقع';
-                document.getElementById('nav-goals').innerHTML = '<i class="fas fa-flag-checkered"></i> اهدافي';
-                document.getElementById('nav-contact-me').innerHTML = '<i class="fas fa-envelope"></i> تواصل معي';
-                document.getElementById('nav-projects').innerHTML = '<i class="fas fa-code-branch"></i> أكثر';
-                document.getElementById('toggle-language').innerHTML = '<i class="fas fa-language"></i> English';
-                document.getElementById('section-home-title').innerHTML = '<i class="fas fa-star"></i> تعريف';
-                document.getElementById('section-home-content').innerText = "مطور برامج مستقل أطمح للتطور ولدي مجموعة من الألعاب ، وهناك المزيد في المستقبل. أسعى دائمًا لتطوير مهاراتي وإنشاء تجارب مميزة للمستخدمين من خلال العاب عالية الجودة.";
-                document.getElementById('section-about-title').innerHTML = '<i class="fas fa-info-circle"></i> عني';
-                document.getElementById('section-about-content').innerText = "هذا الموقع مخصص للمهتمين ببرامج او العاب TSX104. نهدف إلى تقديم محتوى مميز وتجربة فريدة لكل زائر، مع التركيز على الجودة والابتكار في كل ما نقدمه.";
-                document.getElementById('section-contact-title').innerHTML = '<i class="fas fa-laptop-code"></i> الموقع';
-                document.getElementById('section-contact-content').innerText = "اشتغلت على هذا الموقع لحالي، الا أن هناك بعض المساعدة من الذكاء الاصطناعي، لكن الجهد كان شخصي. تم تصميم الموقع بعناية فائقة لتقديم تجربة مستخدم سلسة ومميزة، مع الاهتمام بأدق التفاصيل لضمان واجهة مستخدم احترافية.";
-                document.getElementById('section-goals-title').innerHTML = '<i class="fas fa-bullseye"></i> ما هو الهدف';
-                document.getElementById('section-goals-content').innerText = "أهدف لتعلم C و Assembbly، لكن في الوقت الحالي، لا يكفي الوقت لتعلمها. أطمح إلى الانتقال من مطور مستقل إلى مطور محترف في هذا المجال. أسعى لبناء مشاريع مبتكرة تجمع بين التقنية المتطورة وتجربة المستخدم المميزة، مع التركيز على إنشاء ألعاب وتطبيقات تترك أثرًا إيجابيًا.";
-                document.getElementById('section-contact-me-title').innerHTML = '<i class="fas fa-paper-plane"></i> تواصل معي';
-                document.getElementById('section-contact-me-content').innerHTML = 'للتواصل معي، يمكنك إرسال رسالة إلى البريد الإلكتروني: <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> salehtsx103@gmail.com</a>. سأكون سعيدًا بالرد على استفساراتكم واقتراحاتكم، أو مناقشة فرص التعاون المحتملة.';
-                document.getElementById('copyright-text').innerHTML = "جميع الحقوق محفوظة &copy; 1446 | TSX104";
-                document.getElementById('toggle-theme').innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> ليلي' : '<i class="fas fa-moon"></i> نهاري';
-
-                document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
-                    switch (index) {
-                        case 0:
-                            item.innerHTML = '<i class="fas fa-gamepad"></i> مشاريعي';
-                            item.setAttribute('data-content', "أملك عدة العاب <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(اضغط هنا)</a> لرؤيتهم لكنني أعمل على تطبيقات وألعاب قوية. في المستقبل");
-                            break;
-                        case 1:
-                            item.innerHTML = '<i class="fas fa-id-card"></i> حساباتي';
-                            item.setAttribute('data-content', "تواصل معي عبر البريد الإلكتروني: salehtsx103@gmail.com أو عبر <a href='https://red-leader3xxx.itch.io/' target='_blank'>صفحتي على Itch.io</a>.");
-                            break;
-                        case 2:
-                            item.innerHTML = '<i class="fas fa-code"></i> تطوير';
-                            item.setAttribute('data-content', ".القادم UnrealEngine و UnityEngine يتم تطوير الالعاب على ");
-                            break;
-                        case 3:
-                            item.innerHTML = '<i class="fas fa-file-code"></i> صفحتي';
-                            item.setAttribute('data-content', ".GitHubلصنع هذه الصفحه ونشرتها ب HTML استخدمت ");
-                            break;
-                        case 4:
-                            item.innerHTML = '<i class="fas fa-briefcase"></i> Txstudio';
-                            item.setAttribute('data-content', ".هذاالاستوديو خاص بتطوير الالعاب يمكنك التواصل معي وطلب الانضمام هدفي هو جعل Txstudio احد اكبر استديوهات الشرق الاوسط سنعمل\nعلى UnrealEngine و UnityEngine");
-                            break;
-                    }
-                });
-            } else {
-                document.getElementById('website-title').innerText = "Welcome to TSX104 Website";
-                document.getElementById('nav-home').innerHTML = '<i class="fas fa-home"></i> Introduction';
-                document.getElementById('nav-about').innerHTML = '<i class="fas fa-user"></i> About Me';
-                document.getElementById('nav-contact').innerHTML = '<i class="fas fa-globe"></i> The Website';
-                document.getElementById('nav-goals').innerHTML = '<i class="fas fa-flag-checkered"></i> My Goals';
-                document.getElementById('nav-contact-me').innerHTML = '<i class="fas fa-envelope"></i> Contact Me';
-                document.getElementById('nav-projects').innerHTML = '<i class="fas fa-code-branch"></i> More';
-                document.getElementById('toggle-language').innerHTML = '<i class="fas fa-language"></i> العربية';
-                document.getElementById('section-home-title').innerHTML = '<i class="fas fa-star"></i> Introduction';
-                document.getElementById('section-home-content').innerText = "An indie software developer aiming to evolve with a collection of games, with more to come. I am constantly working to improve my skills and create exceptional user experiences through high-quality products.";
-                document.getElementById('section-about-title').innerHTML = '<i class="fas fa-info-circle"></i> About Me';
-                document.getElementById('section-about-content').innerText = "This website was created for those interested in TSX104 news, topics, games, and programs. We aim to provide unique content and an exceptional experience for every visitor, focusing on quality and innovation in everything we offer.";
-                document.getElementById('section-contact-title').innerHTML = '<i class="fas fa-laptop-code"></i> The Website';
-                document.getElementById('section-goals-content').innerText = "I aim to learn C and Assembbly, but currently, there's not enough time to learn them. I aspire to transition from an independent developer to a professional developer in this field. I seek to build innovative projects that combine advanced technology and outstanding user experience, focusing on creating games and applications that leave a positive impact.";
-                document.getElementById('section-contact-me-title').innerHTML = '<i class="fas fa-paper-plane"></i> Contact Me';
-                document.getElementById('section-contact-me-content').innerHTML = 'To contact me, you can send a message to the email: <a href="mailto:salehtsx103@gmail.com"><i class="fas fa-envelope"></i> salehtsx103@gmail.com</a>. I will be happy to respond to your inquiries and suggestions, or discuss potential collaboration opportunities.';
-                document.getElementById('copyright-text').innerHTML = "All rights reserved &copy; 2025 | TSX104";
-                document.getElementById('toggle-theme').innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> Dark' : '<i class="fas fa-moon"></i> Light';
-
-                document.querySelectorAll('.dropdown-content a').forEach((item, index) => {
-                    switch (index) {
-                        case 0:
-                            item.innerHTML = '<i class="fas fa-gamepad"></i> My Projects';
-                            item.setAttribute('data-content', "I have several games <a href='https://red-leader3xxx.itch.io/t13dgame' target='_blank'>(Click here)</a> to see them, but I'm working on powerful apps and games for the future.");
-                            break;
-                        case 1:
-                            item.innerHTML = '<i class="fas fa-id-card"></i> My Accounts';
-                            item.setAttribute('data-content', "Contact me via email: salehtsx103@gmail.com or through <a href='https://red-leader3xxx.itch.io/' target='_blank'>my Itch.io page</a>.");
-                            break;
-                        case 2:
-                            item.innerHTML = '<i class="fas fa-code"></i> Development';
-                            item.setAttribute('data-content', "I develop games in Unity now but Unreal Engine is next.");
-                            break;
-                        case 3:
-                            item.innerHTML = '<i class="fas fa-file-code"></i> My Website';
-                            item.setAttribute('data-content', "This website is made using HTML and published using GitHub.");
-                            break;
-                        case 4:
-                            item.innerHTML = '<i class="fas fa-briefcase"></i> TxStudio';
-                            item.setAttribute('data-content', "This Studio is indie Studio Now you can connect me and join TxStudio wants to be the frist in M-E.");
-                            break;
-                    }
-                });
-            }
-        };
-
-        // Event listeners
         document.getElementById('toggle-theme').addEventListener('click', toggleTheme);
-        document.getElementById('toggle-language').addEventListener('click', toggleLanguage);
-
         document.querySelectorAll('.dropdown-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const content = item.getAttribute('data-content');
                 document.getElementById('panel-content').innerHTML = content;
                 document.getElementById('panel').style.display = 'block';
-                document.getElementById('popup-overlay').style.display = 'block'; // Show the overlay
-
-                // Animate panel display
+                document.getElementById('popup-overlay').style.display = 'block';
                 document.getElementById('panel').classList.add('animate');
             });
         });
 
         document.getElementById('close-panel').addEventListener('click', () => {
-            // Animate panel hide
             const panel = document.getElementById('panel');
             panel.style.opacity = '0';
-            panel.style.transform = 'translate(-50%, -50%) translateY(20px)'; // Animate down
+            panel.style.transform = 'translate(-50%, -50%) translateY(20px)';
 
             setTimeout(() => {
                 panel.style.display = 'none';
-                document.getElementById('popup-overlay').style.display = 'none'; // Hide the overlay
+                document.getElementById('popup-overlay').style.display = 'none';
                 panel.style.opacity = '1';
-                panel.style.transform = 'translate(-50%, -50%)'; // Reset transform
+                panel.style.transform = 'translate(-50%, -50%)';
             }, 300);
         });
 
-        // Close panel when clicking outside on the overlay
         document.getElementById('popup-overlay').addEventListener('click', () => {
             const panel = document.getElementById('panel');
             panel.style.opacity = '0';
-            panel.style.transform = 'translate(-50%, -50%) translateY(20px)'; // Animate down
+            panel.style.transform = 'translate(-50%, -50%) translateY(20px)';
 
             setTimeout(() => {
                 panel.style.display = 'none';
-                document.getElementById('popup-overlay').style.display = 'none'; // Hide the overlay
+                document.getElementById('popup-overlay').style.display = 'none';
                 panel.style.opacity = '1';
-                panel.style.transform = 'translate(-50%, -50%)'; // Reset transform
+                panel.style.transform = 'translate(-50%, -50%)';
             }, 300);
         });
 
-
-        // Smooth scrolling for anchor links
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -787,22 +850,17 @@
             });
         });
 
-        // Interactive effects
         document.querySelectorAll('section').forEach(section => {
             section.addEventListener('mouseenter', () => {
                 section.style.transform = 'translateY(-5px)';
-                section.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.35)'; /* Stronger shadow on hover */
+                section.style.boxShadow = '0 15px 50px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 242, 255, 0.2), inset 0 0 40px rgba(0, 242, 255, 0.05)';
             });
 
             section.addEventListener('mouseleave', () => {
                 section.style.transform = 'translateY(0)';
-                section.style.boxShadow = 'var(--box-shadow)';
+                section.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 242, 255, 0.1), inset 0 0 30px rgba(0, 242, 255, 0.03)';
             });
         });
     </script>
 </body>
 </html>
-
-
-
-
